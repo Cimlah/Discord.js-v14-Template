@@ -10,5 +10,10 @@
   },
   "dependencies": {
     "discord.js": "^14.14.1"
+  },
+  "scripts": {
+    "start": "bun run index.ts",
+    "dev": "bun --watch run index.ts",
+    "deploy-commands": "bun run deploy-commands.ts"
   }
 }
