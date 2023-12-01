@@ -33,7 +33,7 @@ const rest = new REST().setToken(config.discordToken as string);
 			{ body: commands },
 		);
 
-		console.log(`Successfully reloaded ${data.length} application (/) commands.`);
+		if(data) console.log(`Successfully reloaded ${Object.keys(data).length} application (/) commands.`)
 	} catch (error) {
 		// And of course, make sure you catch and log any errors!
 		console.error(error);
