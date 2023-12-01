@@ -1,8 +1,8 @@
-import { Events } from "discord.js"
+import { Events, CommandInteraction } from "discord.js"
 import { eventType } from "../types";
 
 const name = Events.InteractionCreate
-async function execute(interaction: { isChatInputCommand: () => any; client: { commands: { get: (arg0: any) => any; }; }; commandName: any; replied: any; deferred: any; followUp: (arg0: { content: string; ephemeral: boolean; }) => any; reply: (arg0: { content: string; ephemeral: boolean; }) => any; }) {
+async function execute(interaction: CommandInteraction) {
     if (!interaction.isChatInputCommand()) return;
 
     const command = interaction.client.commands.get(interaction.commandName)
