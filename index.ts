@@ -1,4 +1,4 @@
-import { Client, Collection, Events, GatewayIntentBits } from "discord.js"
+import { Client, Collection, GatewayIntentBits } from "discord.js"
 import * as commands from "./commands"
 import * as events from "./events"
 const discordToken = process.env.DISCORD_TOKEN
@@ -15,33 +15,7 @@ for(const command in commands) {
     else {
         console.log(`[WARNING] The command at ${path} is missing a required "data" or "execute" property.`)
     }
-}
-
-// discordClient.once(Events.ClientReady, (readyClient) => {
-//     console.log(`Ready! Logged in as ${readyClient.user.tag}`)
-// })
-
-// discordClient.on(Events.InteractionCreate, async (interaction) => {
-//     if(!interaction.isChatInputCommand()) return
-
-//     const command = interaction.client.commands.get(interaction.commandName)
-//     if(!command) {
-//         console.error(`No command matching ${interaction.commandName} was found.`)
-//         return
-//     }
-
-//     try {
-//         await command.execute(interaction)
-//     } catch(error) {
-//         console.log(error)
-//         if(interaction.replied || interaction.deferred) {
-//             await interaction.followUp({ content: "There was an error while executing this command!", ephemeral: true })
-//         }
-//         else {
-//             await interaction.reply({ content: "There was an error while executing this command!", ephemeral: true })
-//         }
-//     }
-// })
+} // Load all commands
 
 for(const event in events) {
     const { name, once, execute } = events[event as keyof typeof events]
@@ -52,6 +26,6 @@ for(const event in events) {
     else {
         discordClient.on(name as string, (...args) => execute(...args))
     }
-}
+} // Load all event listeners
 
 discordClient.login(discordToken)
