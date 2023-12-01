@@ -6,7 +6,8 @@ const data = new SlashCommandBuilder()
     .setName("ping")
     .setDescription("Replies with Pong!");
 async function execute(interaction: CommandInteraction) {
-    await interaction.reply("Pong!");
+    const username = interaction.user.username
+    await interaction.reply(`Pong to ${username}!`);
 }
 
 export const ping: slashCommandType = {
