@@ -11,8 +11,7 @@ const commands = [];
 for(const command in importedCommands) {
     const { data, execute, path } = importedCommands[command as keyof typeof importedCommands]
 
-    if(data && execute) {
-        // discordClient.commands.set(data.name, execute)
+    if(data && typeof execute == "function") {
         commands.push(data.toJSON())
     }
     else {

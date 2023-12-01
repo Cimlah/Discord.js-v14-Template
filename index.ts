@@ -9,7 +9,7 @@ discordClient.commands = new Collection()
 for(const command in commands) {
     const { data, execute, path } = commands[command as keyof typeof commands]
 
-    if(data && execute) {
+    if(data && typeof execute == "function") {
         discordClient.commands.set(data.name, commands[command as keyof typeof commands])
     }
     else {
